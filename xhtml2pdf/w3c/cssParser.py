@@ -368,10 +368,12 @@ class CSSParser(object):
         i_string2 = '\'((?:%s|\")*)\'' % i_string_content
         i_string = _orRule(i_string1, i_string2)
         re_string = re.compile(i_string, _reflags)
-        i_uri = ('url\\(\s*(?:(?:%s)|((?:%s)+))\s*\\)'
-                 % (i_string, _orRule('[!#$%&*-~]', i_nonascii, i_escape)))
+        #i_uri = ('url\\(\s*(?:(?:%s)|((?:%s)+))\s*\\)'
+        #         % (i_string, _orRule('[!#$%&*-~]', i_nonascii, i_escape)))
         # XXX For now
         # i_uri = '(url\\(.*?\\))'
+        # The above pattern wasn't working. This one does but is incredibly naive I'm sure.
+        i_uri = 'url\\((.*?)\\)'
         re_uri = re.compile(i_uri, _reflags)
         i_num = '(([-+]?[0-9]+(?:\\.[0-9]+)?)|([-+]?\\.[0-9]+))' # XXX Added out paranthesis, because e.g. .5em was not parsed correctly
         re_num = re.compile(i_num, _reflags)
