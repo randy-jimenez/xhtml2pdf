@@ -32,7 +32,7 @@ import sys
 try:
     import StringIO
 except Exception:
-    from io import StringIO
+    from io import StringIO, BytesIO
     StringIO_old = StringIO
     class StringIO(object):
         StringIO = StringIO_old
@@ -511,7 +511,7 @@ class PmlImage(Flowable, PmlMaxHeightMixIn):
         return self.dWidth, self.dHeight
 
     def getImage(self):
-        img = PmlImageReader(StringIO.StringIO(self._imgdata))
+        img = PmlImageReader(BytesIO(self._imgdata))
         return img
 
     def draw(self):
