@@ -9,6 +9,10 @@ try:
 except Exception:
     from string import join #python 2
 
+try:
+    basestring
+except Exception:
+    basestring = str
 
 #validate version sys.version[0] == 2 -> is python 2
 #validate version sys.version[0] == 3 -> is python 3
